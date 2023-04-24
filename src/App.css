@@ -10,7 +10,6 @@ body {
 
 
 .navbar {
-    border: 1px solid greenyellow;
     display: flex;
     align-items: center;
     justify-content: center;
