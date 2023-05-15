@@ -19,12 +19,22 @@ export default function ModalForm(props) {
                     name="firstName"
                     value={props.firstName}
                 />
+                <props.ValidationError
+                    prefix="firstName"
+                    field="firstName"
+                    errors={props.errors}
+                />
                 <input
                     type="email"
                     placeholder="Email"
                     onChange={props.handleChange}
                     name="email"
                     value={props.email}
+                />
+                <props.ValidationError
+                    prefix="email"
+                    field="email"
+                    errors={props.errors}
                 />
                 <label htmlFor="destination">Where would you like to go?</label>
                 <select
@@ -39,7 +49,7 @@ export default function ModalForm(props) {
                     <option value="sydney">Sydney Australia</option>
                     <option value="norway">Norway</option>
                 </select>
-                <button>{props.submitted ? 'Thank You' : 'Submit'}</button>
+                <button type="submit" disabled={props.submitting}>{props.submitted ? 'Thank You' : 'Submit'}</button>
             </form>
         </div>
     )

@@ -5,6 +5,7 @@ import Card from './components/Card'
 import data from './data'
 import ModalForm from './components/ModalForm'
 import React from 'react'
+import { useForm, ValidationError } from '@formspree/react'
 
 function App() {
     const [showModal, setShowModal] = React.useState(false)
@@ -15,7 +16,8 @@ function App() {
             destination: ""
         }
     )
-    const [submitted, setSubmitted] = React.useState(false)
+    // const [submitted, setSubmitted] = React.useState(false)
+    const [state, handleSubmit] = useForm('xjvdzarn');
     React.useEffect(() => {
         setTimeout(() => {
             setShowModal(true)
@@ -49,12 +51,12 @@ function App() {
     }
     console.log(formData)
 
-    function handleSubmit(e) {
-        e.preventDefault()
-        console.log(formData)
-        setSubmitted(true)
-        setTimeout(closeModal, 1000)
-    }
+    // function handleSubmit(e) {
+    //     e.preventDefault()
+    //     console.log(formData)
+    //     setSubmitted(true)
+    //     setTimeout(closeModal, 1000)
+    // }
     function closeModal() {
         setShowModal(false)
     }
@@ -68,7 +70,11 @@ function App() {
                 destination={formData.destination}
                 handleChange={handleChange}
                 closeModal={closeModal}
-                submitted={submitted}
+                submitted={state.succeeded}
+                errors={state.errors}
+                submitting={state.submitting}
+                ValidationError={ValidationError}
+
             />}
             <main className='cards-list'>
                 {cards}
