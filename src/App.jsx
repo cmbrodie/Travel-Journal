@@ -3,8 +3,25 @@ import './App.css'
 import Navbar from './components/Navbar'
 import Card from './components/Card'
 import data from './data'
+import ModalForm from './components/ModalForm'
+import React from 'react'
 
 function App() {
+    const [showModal, setShowModal] = React.useState(false)
+    const [formData, setFormData] = React.useState(
+        {
+            firstName: "",
+            email: "",
+            destination: ""
+        }
+    )
+    const [submitted, setSubmitted] = React.useState(false)
+    React.useEffect(() => {
+        setTimeout(() => {
+            setShowModal(true)
+        }, 4000)
+    }, [])
+
     const cards = data.map(card => {
         return <Card
 
@@ -21,10 +38,38 @@ function App() {
 
         />
     })
+    function handleChange(e) {
+        const { name, value } = e.target
+        setFormData(prevFormData => {
+            return {
+                ...prevFormData,
+                [name]: value
+            }
+        })
+    }
+    console.log(formData)
 
+    function handleSubmit(e) {
+        e.preventDefault()
+        console.log(formData)
+        setSubmitted(true)
+        setTimeout(closeModal, 1000)
+    }
+    function closeModal() {
+        setShowModal(false)
+    }
     return (
         <>
             <Navbar />
+            {showModal && <ModalForm
+                handleSubmit={handleSubmit}
+                firstName={formData.firstName}
+                email={formData.email}
+                destination={formData.destination}
+                handleChange={handleChange}
+                closeModal={closeModal}
+                submitted={submitted}
+            />}
             <main className='cards-list'>
                 {cards}
             </main>
