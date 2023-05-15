@@ -57,6 +57,9 @@ function App() {
     //     setSubmitted(true)
     //     setTimeout(closeModal, 1000)
     // }
+    if (state.succeeded) {
+        setTimeout(closeModal, 1000)
+    }
     function closeModal() {
         setShowModal(false)
     }

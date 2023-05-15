@@ -96,7 +96,10 @@ body {
     background-color: #f55a5a;
     position: fixed;
     top: 15%;
-    left: 45%;
+    bottom: auto;
+    left: 0;
+    right: 0;
+    margin: auto;
     width: 220px;
     padding: 1rem;
     color: white;

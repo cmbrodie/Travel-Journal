@@ -1,10 +1,5 @@
 import React from "react";
-// {showModal && <ModalForm
-//     handleSubmit={() => handleSubmit(e)}
-//     firstName={formData.firstName}
-//     email={formData.email}
-//     destination={formData.destination}
-// />}
+
 export default function ModalForm(props) {
 
     return (
